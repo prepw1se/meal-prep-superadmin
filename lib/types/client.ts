@@ -1,8 +1,8 @@
 export interface Client {
   id: string;
   name: string;
-  adminName: string;
-  adminEmail: string;
-  isActive: boolean;
+  admin_name: string;
+  admin_email: string;
+  is_active: boolean;
   createdAt: string;
 }
