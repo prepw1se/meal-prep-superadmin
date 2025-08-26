@@ -36,7 +36,7 @@ export function NavBar() {
     return () => {
       subscription.unsubscribe();
     };
-  }, []);
+  }, [supabase]);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -61,13 +61,11 @@ export function NavBar() {
               </Button>
             </Link>
           ) : (
-            <>
-              <Link href="/admin/login">
-                <Button variant="outline" className="px-6">
-                  Log in
-                </Button>
-              </Link>
-            </>
+            <Link href="/login">
+              <Button variant="outline" className="px-6">
+                Log in
+              </Button>
+            </Link>
           )}
         </div>
       </div>

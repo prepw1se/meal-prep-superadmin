@@ -1,4 +1,3 @@
-import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
 import { Sidebar } from "./(components)/sidebar";
@@ -12,12 +11,9 @@ export default async function AdminLayout({
   const supabase = await createClient();
   const { data, error: authUserError } = await supabase.auth.getUser();
 
-  const isPrepwiseDomain = (await headers()).get("host")?.includes("prepwise");
-  const redirectPath = isPrepwiseDomain ? "/login" : "/super-admin/login";
-
-  // if (authUserError || !data?.user) {
-  //   redirect(redirectPath);
-  // }
+  if (authUserError || !data?.user) {
+    redirect("/login");
+  }
 
   const { data: user, error } = await supabase
     .from("superusers")
@@ -26,9 +22,9 @@ export default async function AdminLayout({
     .single();
 
   if (error || !user) {
-    console.log("here error")
+    console.log("here error");
     console.error(error);
-    redirect(redirectPath);
+    redirect("/login");
   }
 
   return (
