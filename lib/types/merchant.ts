@@ -3,6 +3,8 @@ export interface Merchant {
   name: string;
   admin_name: string;
   admin_email: string;
+  slug: string;
+  domain: string;
   is_active: boolean;
   created_at: string;
 }
